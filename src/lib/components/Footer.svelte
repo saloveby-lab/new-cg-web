@@ -128,6 +128,14 @@
             <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
             <span class="text-green-400 font-medium">All Systems Operational</span>
           </div>
+          <span class="hidden sm:block">•</span>
+          <a
+            href="/admin"
+            class="text-txt-muted/40 hover:text-txt-muted transition-colors duration-300"
+            title="Admin Panel"
+          >
+            ⚙
+          </a>
         </div>
       </div>
 

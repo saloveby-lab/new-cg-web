@@ -1,127 +1,14 @@
 <script>
   import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+
+  export let data;
 
   let visible = false;
   onMount(() => {
     visible = true;
   });
 
-  // Mock data - in real app, this would come from a database or API
-  const newsData = {
-    'next-generation-platform': {
-      title: 'CasinoGame Launches Next-Generation Platform',
-      date: '2024-03-15',
-      category: 'Product Launch',
-      author: 'John Smith',
-      readTime: '5 min read',
-      image: '/images/news/1.png',
-      excerpt: 'Our latest platform update brings unprecedented performance and new features to operators worldwide.',
-      content: `
-        <p>We're thrilled to announce the launch of our next-generation iGaming platform, representing a major leap forward in performance, features, and user experience.</p>
-
-        <h2>Revolutionary Performance</h2>
-        <p>The new platform delivers lightning-fast load times with our proprietary caching system, reducing page load times by 60% compared to the previous version. This means happier players and higher engagement rates for our operator partners.</p>
-
-        <h2>AI-Powered Analytics</h2>
-        <p>Integrated machine learning algorithms now provide real-time insights into player behavior, helping operators make data-driven decisions to optimize their offerings and maximize revenue.</p>
-
-        <h2>Enhanced Security</h2>
-        <p>Security has always been our top priority. This update includes:</p>
-        <ul>
-          <li>Advanced DDoS protection with auto-scaling capabilities</li>
-          <li>End-to-end encryption for all player data</li>
-          <li>Two-factor authentication as standard</li>
-          <li>Real-time fraud detection powered by AI</li>
-        </ul>
-
-        <h2>New Features</h2>
-        <p>Operators can now enjoy:</p>
-        <ul>
-          <li>Customizable player dashboards</li>
-          <li>Advanced tournament systems</li>
-          <li>Multi-currency support (150+ currencies)</li>
-          <li>Live chat integration with AI assistance</li>
-          <li>Progressive jackpot networks</li>
-        </ul>
-
-        <h2>Mobile-First Design</h2>
-        <p>With over 70% of gaming traffic coming from mobile devices, we've completely redesigned our mobile experience. The new responsive design adapts seamlessly to any screen size while maintaining peak performance.</p>
-
-        <h2>Getting Started</h2>
-        <p>All existing customers will be automatically upgraded over the next 30 days. New operators can get started immediately by contacting our sales team.</p>
-      `,
-      relatedNews: [
-        { id: 'payment-partnership', title: 'New Payment Provider Partnership', image: '/images/news/2.png' },
-        { id: 'q1-performance', title: 'Record-Breaking Q1 Performance', image: '/images/news/3.png' },
-        { id: 'ai-analytics', title: 'AI-Powered Player Analytics', image: '/images/news/4.png' }
-      ]
-    },
-    'payment-partnership': {
-      title: 'New Partnership with Leading Payment Provider',
-      date: '2024-03-10',
-      category: 'Partnership',
-      author: 'Sarah Johnson',
-      readTime: '4 min read',
-      image: '/images/news/2.png',
-      excerpt: 'Expanding payment options for our operators with seamless integration of cryptocurrency and local payment methods.',
-      content: `
-        <p>We're excited to announce a strategic partnership with one of the world's leading payment processing providers, significantly expanding payment options for our operator partners.</p>
-
-        <h2>Enhanced Payment Options</h2>
-        <p>This partnership brings 50+ new payment methods to our platform, including:</p>
-        <ul>
-          <li>Major cryptocurrencies (Bitcoin, Ethereum, Litecoin, USDT)</li>
-          <li>Regional payment methods across Asia, Europe, and Latin America</li>
-          <li>Instant bank transfers</li>
-          <li>Popular e-wallets</li>
-        </ul>
-
-        <h2>Seamless Integration</h2>
-        <p>All new payment methods are automatically available to operators with zero additional integration work required. Our unified API handles all the complexity behind the scenes.</p>
-
-        <h2>Lower Fees, Faster Settlements</h2>
-        <p>The partnership includes negotiated lower transaction fees and faster settlement times, putting more money in operators' pockets, faster.</p>
-      `,
-      relatedNews: [
-        { id: 'next-generation-platform', title: 'Next-Generation Platform Launch', image: '/images/news/1.png' },
-        { id: 'q1-performance', title: 'Record-Breaking Q1 Performance', image: '/images/news/3.png' }
-      ]
-    },
-    'q1-performance': {
-      title: 'Record-Breaking Q1 Performance',
-      date: '2024-03-05',
-      category: 'Company News',
-      author: 'Michael Chen',
-      readTime: '3 min read',
-      image: '/images/news/3.png',
-      excerpt: 'CasinoGame achieves 150% year-over-year growth with expanded market presence across 50+ countries.',
-      content: `
-        <p>We're proud to announce record-breaking results for Q1 2024, marking our strongest quarter ever with 150% year-over-year growth.</p>
-
-        <h2>Key Achievements</h2>
-        <ul>
-          <li>Revenue increased by 150% compared to Q1 2023</li>
-          <li>Expanded to 15 new markets</li>
-          <li>Onboarded 200+ new operator partners</li>
-          <li>Processed over $2.5 billion in player transactions</li>
-        </ul>
-
-        <h2>Global Expansion</h2>
-        <p>Our platform is now live in over 50 countries, with particularly strong growth in emerging markets across Latin America and Southeast Asia.</p>
-
-        <h2>Looking Ahead</h2>
-        <p>With strong momentum heading into Q2, we're continuing to invest in product development, customer success, and market expansion.</p>
-      `,
-      relatedNews: [
-        { id: 'next-generation-platform', title: 'Next-Generation Platform Launch', image: '/images/news/1.png' },
-        { id: 'ai-analytics', title: 'AI-Powered Player Analytics', image: '/images/news/4.png' }
-      ]
-    }
-  };
-
-  $: slug = $page.params.slug;
-  $: article = newsData[slug] || newsData['next-generation-platform'];
+  $: article = data.article;
 </script>
 
 <svelte:head>

@@ -1,87 +1,28 @@
 <script>
   import { onMount } from 'svelte';
 
+  export let data;
+
   let visible = false;
   onMount(() => {
     visible = true;
   });
 
-  const news = [
-    {
-      id: 'next-generation-platform',
-      title: 'CasinoGame Launches Next-Generation Platform',
-      date: '2024-03-15',
-      category: 'Product Launch',
-      excerpt: 'Our latest platform update brings unprecedented performance and new features to operators worldwide.',
-      image: '/images/news/1.png',
-      featured: true
-    },
-    {
-      id: 'payment-partnership',
-      title: 'New Partnership with Leading Payment Provider',
-      date: '2024-03-10',
-      category: 'Partnership',
-      excerpt: 'Expanding payment options for our operators with seamless integration of cryptocurrency and local payment methods.',
-      image: '/images/news/2.png',
-      featured: true
-    },
-    {
-      id: 'q1-performance',
-      title: 'Record-Breaking Q1 Performance',
-      date: '2024-03-05',
-      category: 'Company News',
-      excerpt: 'CasinoGame achieves 150% year-over-year growth with expanded market presence across 50+ countries.',
-      image: '/images/news/3.png',
-      featured: false
-    },
-    {
-      id: 'ai-analytics',
-      title: 'AI-Powered Player Analytics Released',
-      date: '2024-02-28',
-      category: 'Technology',
-      excerpt: 'New machine learning features help operators understand player behavior and optimize engagement strategies.',
-      image: '/images/news/4.png',
-      featured: false
-    },
-    {
-      id: 'licensing-update',
-      title: 'Compliance Update: New Licensing in 5 Markets',
-      date: '2024-02-20',
-      category: 'Regulatory',
-      excerpt: 'CasinoGame secures additional gaming licenses, enabling operations in key European and Latin American markets.',
-      image: '/images/news/5.png',
-      featured: false
-    },
-    {
-      id: 'games-library',
-      title: '100+ New Games Added to Library',
-      date: '2024-02-15',
-      category: 'Product Update',
-      excerpt: 'Massive content expansion includes exclusive titles from top-tier game providers and in-house developed games.',
-      image: '/images/news/6.png',
-      featured: false
-    },
-    {
-      id: 'industry-award',
-      title: 'Industry Award: Best Platform Provider 2024',
-      date: '2024-02-10',
-      category: 'Awards',
-      excerpt: 'Recognized as the leading B2B platform provider at the Global Gaming Awards for innovation and service excellence.',
-      image: '/images/news/9.png',
-      featured: false
-    },
-    {
-      id: 'mobile-app-launch',
-      title: 'Mobile App 3.0 Launch',
-      date: '2024-02-01',
-      category: 'Product Launch',
-      excerpt: 'Complete redesign of our mobile platform with improved performance and new native features for iOS and Android.',
-      image: '/images/news/10.png',
-      featured: false
-    }
-  ];
+  // Transform database news to match UI format
+  $: news = (data.news || []).map(item => ({
+    id: item.slug,
+    title: item.title,
+    date: item.published_at || item.created_at,
+    category: item.category || 'News',
+    excerpt: item.excerpt || item.content.substring(0, 150) + '...',
+    image: item.featured_image || '/images/news/default.png',
+    featured: item.featured === 1 || item.featured === true
+  }));
 
-  const categories = ['All', 'Product Launch', 'Partnership', 'Company News', 'Technology', 'Regulatory', 'Product Update', 'Awards'];
+  // Extract unique categories from news
+  $: uniqueCategories = [...new Set(news.map(n => n.category))];
+  $: categories = ['All', ...uniqueCategories];
+
   let selectedCategory = 'All';
 
   $: filteredNews = selectedCategory === 'All'
