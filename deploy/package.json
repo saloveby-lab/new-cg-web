@@ -1,0 +1,14 @@
+{
+  "name": "casinogame-sveltekit",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node build/index.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop casinogame-sveltekit",
+    "pm2:restart": "pm2 restart casinogame-sveltekit"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0"
+  }
+}
