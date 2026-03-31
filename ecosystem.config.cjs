@@ -6,12 +6,12 @@ module.exports = {
     exec_mode: 'cluster',
     env: {
       NODE_ENV: 'production',
-      PORT: 80,
+      PORT: 3000,
       HOST: '0.0.0.0'
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 80,
+      PORT: 3000,
       HOST: '0.0.0.0'
     },
     // PM2 Options
